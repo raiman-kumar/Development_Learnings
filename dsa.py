@@ -499,41 +499,88 @@
 
 # created array and perform travrsal
 
+# my_array = []
+
+# my_array.append(110)
+# my_array.append(190)
+# my_array.append(120)
+
+# for i in range(len(my_array)):
+#     print(my_array[i])
+
+# # created linked list and perform travrsal
+
+# class Node:
+#     def __init__(self, data):
+#         self.data = data
+#         self.next = None
+
+# node1 = Node(200)
+# node2 = Node(300)
+# node1.next = node2
+# node3 = Node(400)
+# node2.next = node3
+
+# def traverse(node):
+#     print(node.data)
+#     if node.next == None:
+#         return
+#     traverse(node.next)
+# print('travrse')
+# traverse(node1)
+
+# # traversal using loop
+# print("traversal using loop")
+# node = node1
+# while node.data != None:
+#     print(node.data)
+#     if node.next == None:
+#         break
+#     node = node.next
+
+# stack using array (python list)
+
 my_array = []
 
-my_array.append(110)
-my_array.append(190)
-my_array.append(120)
+user_input = None
 
-for i in range(len(my_array)):
-    print(my_array[i])
+def push(data):
+    my_array.append(data)
 
-# created linked list and perform travrsal
+def pop():
+    my_array.pop()
 
-class Node:
-    def __init__(self, data):
-        self.data = data
-        self.next = None
+def show_stack():
+    return my_array
 
-node1 = Node(200)
-node2 = Node(300)
-node1.next = node2
-node3 = Node(400)
-node2.next = node3
+def ask():
+    global user_input
+    user_input = int(input("""
+-: what do you want to do with stack :-
+      press 1 to insert the data
+      press 2 to delete the data
+      press 3 to view the data
+      press 0 to exit
+"""))
+ask()
+while user_input:
+    if user_input == 1:
+        if len(my_array) == 5:
+            print("stack is full")
+        else:
+            data = input("""enter the data
+""")    
+            push(data)
+    elif user_input == 2:
+        if len(my_array) == 0:
+            print("stack is empty")
+        else:
+            pop()
+    elif user_input == 3:
+        print(show_stack())
+    else:
+        print("enter valid option")
 
-def traverse(node):
-    print(node.data)
-    if node.next == None:
-        return
-    traverse(node.next)
-print('travrse')
-traverse(node1)
+    ask()
 
-# traversal using loop
-print("traversal using loop")
-node = node1
-while node.data != None:
-    print(node.data)
-    if node.next == None:
-        break
-    node = node.next
+print("thank you!")
