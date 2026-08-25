@@ -662,19 +662,96 @@
 #     ask()
 # print("thank you!")
 
-# queue using array (python list)
+# # queue using array (python list)
 
-my_queue = []
+# my_queue = []
+# user_input = None
+
+# def insert(data):
+#     my_queue.append(data)
+
+# def delete():
+#     my_queue.pop(0)
+
+# def show_queue():
+#     return my_queue
+
+# def ask():
+#     global user_input
+#     user_input = int(input("""
+# -: what do you want to do with queue :-
+#       press 1 to insert the data
+#       press 2 to delete the data
+#       press 3 to view the data
+#       press 0 to exit
+# """))
+
+# ask()
+# while user_input:
+#     if user_input == 1:
+#         if len(my_queue) == 5:
+#             print("queue is full")
+#         else:
+#             data = input("""enter the data
+# """)    
+#             insert(data)
+#             print("data inserted")
+
+#     elif user_input == 2:
+#         if len(my_queue) == 0:
+#             print("queue is empty")
+#         else:
+#             delete()
+#             print("data deleted")
+
+#     elif user_input == 3:
+#         print(show_queue())
+
+#     elif user_input not in [1,2,3]:
+#         print("enter correct input")
+
+#     ask()
+# print("thank you!")
+
+# queue using linked list
+
 user_input = None
+front = None 
+rear = None
+size = 0
+
+class Node:
+    def __init__(self, data):
+        self.data = data
+        self.next = None
 
 def insert(data):
-    my_queue.append(data)
+    global front, rear, size
+    new_node = Node(data)
+    if front == None:
+        front = new_node
+        rear = new_node
+    else:
+        rear.next = new_node
+        rear = new_node
+    size += 1
 
 def delete():
-    my_queue.pop(0)
+    global front, rear, size
+    if front == None:
+        print("queue is empty")
+    else:
+        front = front.next
+        size -= 1
 
-def show_queue():
-    return my_queue
+def show_queue(front):
+    if front == None:
+        print("queue is empty")
+        return
+    print(front.data, end= " ")
+    if front.next == None:
+        return
+    show_queue(front.next)
 
 def ask():
     global user_input
@@ -689,7 +766,7 @@ def ask():
 ask()
 while user_input:
     if user_input == 1:
-        if len(my_queue) == 5:
+        if size == 5:
             print("queue is full")
         else:
             data = input("""enter the data
@@ -698,14 +775,15 @@ while user_input:
             print("data inserted")
 
     elif user_input == 2:
-        if len(my_queue) == 0:
+        if size == 0:
             print("queue is empty")
         else:
             delete()
             print("data deleted")
 
     elif user_input == 3:
-        print(show_queue())
+        print("queue data")
+        show_queue(front)
 
     elif user_input not in [1,2,3]:
         print("enter correct input")
