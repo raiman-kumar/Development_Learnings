@@ -717,7 +717,6 @@
 
 user_input = None
 front = None 
-rear = None
 size = 0
 
 class Node:
@@ -726,18 +725,16 @@ class Node:
         self.next = None
 
 def insert(data):
-    global front, rear, size
+    global front, size
     new_node = Node(data)
     if front == None:
         front = new_node
-        rear = new_node
     else:
-        rear.next = new_node
-        rear = new_node
+        front.next = new_node
     size += 1
 
 def delete():
-    global front, rear, size
+    global front, size
     if front == None:
         print("queue is empty")
     else:
