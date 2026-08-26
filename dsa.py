@@ -549,8 +549,8 @@
 # def delete():
 #     my_stack.pop()
 
-# def show_stack():
-#     return my_stack
+# def show_top_of_stack():
+#     return my_stack[-1]
 
 # def ask():
 #     global user_input
@@ -581,7 +581,7 @@
 #             print("data deleted")
 
 #     elif user_input == 3:
-#         print(show_stack())
+#         print(show_top_of_stack())
 
 #     elif user_input not in [1,2,3]:
 #         print("enter correct input")
@@ -612,11 +612,11 @@
 #     top = top.next
 #     size -= 1
 
-# def show_stack(top):
-#     print(top.data)
+# def show_top_of_stack(top):
 #     if top.next == None:
+#         print(top.data)
 #         return
-#     show_stack(top.next)
+#     show_top_of_stack(top.next)
 
 
 # def ask():
@@ -652,7 +652,7 @@
 #     elif user_input == 3:
 #         if size != 0:
 #             print("stack data")
-#             show_stack(top)
+#             show_top_of_stack(top)
 #         else:
 #             print("stack is empty")
 
@@ -673,8 +673,8 @@
 # def delete():
 #     my_queue.pop(0)
 
-# def show_queue():
-#     return my_queue
+# def show_front_of_queue():
+#     return my_queue[0]
 
 # def ask():
 #     global user_input
@@ -705,7 +705,7 @@
 #             print("data deleted")
 
 #     elif user_input == 3:
-#         print(show_queue())
+#         print(show_front_of_queue())
 
 #     elif user_input not in [1,2,3]:
 #         print("enter correct input")
@@ -713,77 +713,156 @@
 #     ask()
 # print("thank you!")
 
-# queue using linked list
+# # queue using linked list
 
-user_input = None
-front = None 
-size = 0
+# user_input = None
+# front = None 
+# size = 0
 
-class Node:
-    def __init__(self, data):
-        self.data = data
-        self.next = None
+# class Node:
+#     def __init__(self, data):
+#         self.data = data
+#         self.next = None
 
-def insert(data):
-    global front, size
-    new_node = Node(data)
-    if front == None:
-        front = new_node
+# def insert(data):
+#     global front, size
+#     new_node = Node(data)
+#     if front == None:
+#         front = new_node
+#     else:
+#         front.next = new_node
+#     size += 1
+
+# def delete():
+#     global front, size
+#     if front == None:
+#         print("queue is empty")
+#     else:
+#         front = front.next
+#         size -= 1
+
+# def show_front_of_queue(front):
+#     if front == None:
+#         print("queue is empty")
+#         return
+#     if front.next == None:
+#         print(front.data)
+#         return
+#     show_front_of_queue(front.next)
+
+# def ask():
+#     global user_input
+#     user_input = int(input("""
+# -: what do you want to do with queue :-
+#       press 1 to insert the data
+#       press 2 to delete the data
+#       press 3 to view the data
+#       press 0 to exit
+# """))
+
+# ask()
+# while user_input:
+#     if user_input == 1:
+#         if size == 5:
+#             print("queue is full")
+#         else:
+#             data = input("""enter the data
+# """)    
+#             insert(data)
+#             print("data inserted")
+
+#     elif user_input == 2:
+#         if size == 0:
+#             print("queue is empty")
+#         else:
+#             delete()
+#             print("data deleted")
+
+#     elif user_input == 3:
+#         show_front_of_queue(front)
+
+#     elif user_input not in [1,2,3]:
+#         print("enter correct input")
+
+#     ask()
+# print("thank you!")
+
+# tree using array (python list), complete binary tree (heap tree), formulae 2n+1, 2n+2
+
+my_tree = [80,70,60,50,40,30,20,10]
+
+def insert_data(tree, value):
+    tree.append(value)
+    element_index = len(tree)-1
+    parent_index = find_parent_index(element_index)
+    while parent_index != -1:
+        if tree[parent_index] < tree[element_index]:
+            tree[parent_index], tree[element_index] = tree[element_index], tree[parent_index]
+            element_index = parent_index
+            parent_index = find_parent_index(element_index)
+        break
+
+def find_parent_index(index_of_data):
+    if index_of_data == 0:
+        return -1
+    elif index_of_data % 2 == 0:
+        return ((index_of_data - 2) // 2)
     else:
-        front.next = new_node
-    size += 1
+        return ((index_of_data - 1) // 2)
 
-def delete():
-    global front, size
-    if front == None:
-        print("queue is empty")
-    else:
-        front = front.next
-        size -= 1
+def delete(tree):
+    tree[0], tree[-1] = tree[-1], tree[0]
+    tree.pop()
+    swaped_data = tree.pop(0)
+    tree.append(swaped_data)
 
-def show_queue(front):
-    if front == None:
-        print("queue is empty")
+def show_heap_tree(tree):
+    if len(tree) == 0:
+        print("tree is empty")
         return
-    print(front.data, end= " ")
-    if front.next == None:
-        return
-    show_queue(front.next)
+    print("tree data")
+    n = (len(tree)//2)
+    start_index = 0
+    m = 1
+    for i in range(n):
+        for j in range(start_index,m):
+            print(tree[j], end=" ")
+            if tree[j] == tree[-1]:
+                break
+            start_index += 1
+        m = 2*m+1
+        print()        
 
 def ask():
-    global user_input
     user_input = int(input("""
--: what do you want to do with queue :-
+-: what do you want to do with heap tree :-
       press 1 to insert the data
       press 2 to delete the data
       press 3 to view the data
       press 0 to exit
 """))
+    return user_input
 
-ask()
+user_input = ask()
 while user_input:
     if user_input == 1:
-        if size == 5:
-            print("queue is full")
-        else:
-            data = input("""enter the data
-""")    
-            insert(data)
-            print("data inserted")
+        data = int(input("""enter the data
+"""))
+        insert_data(my_tree, data)
+        print("data inserted")
 
     elif user_input == 2:
-        if size == 0:
-            print("queue is empty")
+        if len(my_tree) == 0:
+            print("tree is empty")
         else:
-            delete()
+            delete(my_tree)
             print("data deleted")
 
     elif user_input == 3:
-        print("queue data")
-        show_queue(front)
+        show_heap_tree(my_tree)
 
     elif user_input not in [1,2,3]:
         print("enter correct input")
 
-    ask()
+    user_input = ask()
 print("thank you!")
