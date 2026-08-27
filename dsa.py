@@ -789,7 +789,7 @@
 
 # tree using array (python list), complete binary tree (heap tree), formulae 2n+1, 2n+2
 
-my_tree = [80,70,60,50,40,30,20,10]
+my_tree = []
 
 def insert_data(tree, value):
     tree.append(value)
@@ -800,7 +800,8 @@ def insert_data(tree, value):
             tree[parent_index], tree[element_index] = tree[element_index], tree[parent_index]
             element_index = parent_index
             parent_index = find_parent_index(element_index)
-        break
+        else:
+            break
 
 def find_parent_index(index_of_data):
     if index_of_data == 0:
@@ -813,15 +814,50 @@ def find_parent_index(index_of_data):
 def delete(tree):
     tree[0], tree[-1] = tree[-1], tree[0]
     tree.pop()
-    swaped_data = tree.pop(0)
-    tree.append(swaped_data)
+    parent_index = 0
+    left_child_index, right_child_index = find_child_index(tree, parent_index)
+    while tree[left_child_index] > tree[parent_index] or tree[right_child_index] > tree[parent_index]:
+        if right_child_index == None:
+            tree[left_child_index], tree[parent_index] = tree[parent_index], tree[left_child_index]
+            break
+
+        elif tree[left_child_index] > tree[right_child_index]:
+            tree[left_child_index], tree[parent_index] = tree[parent_index], tree[left_child_index]
+            parent_index = left_child_index
+            left_child_index, right_child_index = find_child_index(tree,parent_index)
+            if len(tree)-1 < left_child_index:
+                break
+        else:
+            tree[right_child_index], tree[parent_index] = tree[parent_index], tree[right_child_index]
+            parent_index = right_child_index
+            left_child_index, right_child_index = find_child_index(tree,parent_index)
+            if len(tree)-1 < left_child_index:
+                break
+
+def find_child_index(tree, index_of_parent):
+    left = index_of_parent*2+1
+    right = index_of_parent*2+2
+    if right <= len(tree)-1:
+        return left, right
+    else:
+        return left , None
 
 def show_heap_tree(tree):
     if len(tree) == 0:
         print("tree is empty")
         return
     print("tree data")
-    n = (len(tree)//2)
+
+    n = 0
+    minimum = 0
+    maximum = 2*minimum+1
+    for i in range(len(tree)):
+        if minimum < len(tree) <= maximum :
+            n += 1
+            break
+        n += 1
+        minimum = maximum
+        maximum = 2*minimum+1
     start_index = 0
     m = 1
     for i in range(n):
