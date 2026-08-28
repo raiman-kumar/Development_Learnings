@@ -37,17 +37,16 @@
 
 # print(count)
 
-# find largest elemeent in array
+# # find largest elemeent in array
 
 # mylist = [10, 5, 18, 7, 20, 3]
 # largest = mylist[0]
-# second_largest = mylist[0]
 # for i in mylist:
 #     if i > largest:
 #         largest = i
 # print(largest)
 
-# find second largest in array
+# # find second largest in array
 
 # mylist = [10, 5, 18, 7, 20, 3]
 # largest = mylist[0]
@@ -66,7 +65,7 @@
 # print(arr[2])
 # print(arr[4])
 
-# traversal in array
+# # traversal in array
 
 # arr = [10,20,30,40,50]
 # print(arr)
@@ -109,8 +108,8 @@
 
 # print(largest)
 
-# search element in array
-# linear search
+# # searching an element in array
+# # linear search
 
 # arr = [10,20,30,40,50]
 
@@ -119,7 +118,7 @@
 #         print(value,"found at index",index)
 #         break
 
-# binary search
+# # binary search
 
 # arr = [10,20,30,40,50]
 # target = 30
@@ -143,8 +142,8 @@
 # else:
 #     print(target,'found at index',binary_search(arr,target))
 
-# sorting 
-# bubble sort
+# # sorting 
+# # bubble sort
 
 # arr = [50,20,10,40,30,60,35,23,75,11]
 # for j in range(len(arr)-1):
@@ -157,7 +156,7 @@
 #         break
 # print(arr)
 
-# selection sort
+# # selection sort
 
 # arr = [50,20,10,40,30,60,35,23,75,11]
 # for j in range(len(arr)-1):
@@ -169,7 +168,7 @@
 #         arr[j], arr[minimum] = arr[minimum], arr[j]
 # print(arr)
 
-# insertion sort
+# # insertion sort
 
 # arr = [50,20,40,30,10]
 
@@ -187,7 +186,7 @@
 
 # print(arr)
 
-# recursion
+# # recursion
 
 # def show(n):
 #     if n == 0: # base case
@@ -196,7 +195,7 @@
 #     show(n-1)  # recursive relation
 # show(3)
 
-# print 1 to n
+# # print 1 to n
 # def show(n):
 #     if n == 0: # base case
 #         return 0   
@@ -204,7 +203,7 @@
 #     print(n)   # print backword
 # show(5)
 
-# print n to 1
+# # print n to 1
 # def show(n):   # base case
 #     if n == 0: # recursive relation
 #         return 0   
@@ -212,7 +211,7 @@
 #     show(n-1)
 # show(5)
 
-# sum of n to 1
+# # sum of n to 1
 # def add(n):
 #     if n == 0: 
 #         return 0
@@ -220,7 +219,7 @@
 #     return n + add(n-1)  
 # print(add(5))
 
-# factorial
+# # factorial
 # def fact(n):
 #     if n == 0: 
 #         return 1   
@@ -242,7 +241,7 @@
 
 # print(fib(5))
 
-# power a^b using recursion
+# # power a^b using recursion
 
 # def power(a,b):
 #     if b == 0:
@@ -250,7 +249,7 @@
 #     if b == 1:
 #         return a
 
-# quick sort
+# # quick sort
 
 # def partition(array, low, high):
 #     pivot = array[high]
@@ -277,7 +276,7 @@
 # quicksort(arr)
 # print("Sorted array:", arr)
 
-# merge sort
+# # merge sort
 
 # def merge_sort(arr):
 #     if len(arr) <= 1:
@@ -313,7 +312,7 @@
 # sorted_arr = merge_sort(unsorted_arr)
 # print("Sorted array:", sorted_arr)
 
-# counting sort
+# # counting sort
 
 
 # def counting_sort(array):
@@ -405,7 +404,7 @@
 #             array[j], array[j+1] = array[j+1], array[j]
 # print(array)
 
-# simple stack using linked list method
+# # simple stack using linked list
 
 # class node:
 #     def __init__(self, data):
@@ -425,7 +424,7 @@
 # lls = linkedliststack()
 # lls.push(10)
 
-# simple tree implimentation using linked list
+# # simple tree implimentation using linked list
 # class node:
 #     def __init__(self, data):
 #         self.data = data
@@ -456,7 +455,7 @@
 
 # inorder(root)
 
-# a simple linked list
+# # a simple linked list
 
 # class Node:
 #     def __init__(self, data):
@@ -787,118 +786,136 @@
 #     ask()
 # print("thank you!")
 
-# tree using array (python list), complete binary tree (heap tree), formulae 2n+1, 2n+2
+# # tree using array (python list), complete binary tree (heap tree), formulae 2n+1, 2n+2
 
-my_tree = []
+# my_tree = []
 
-def insert_data(tree, value):
-    tree.append(value)
-    element_index = len(tree)-1
-    parent_index = find_parent_index(element_index)
-    while parent_index != -1:
-        if tree[parent_index] < tree[element_index]:
-            tree[parent_index], tree[element_index] = tree[element_index], tree[parent_index]
-            element_index = parent_index
-            parent_index = find_parent_index(element_index)
-        else:
-            break
+# def insert_data(tree, value):
+#     tree.append(value)
+#     element_index = len(tree)-1
+#     parent_index = find_parent_index(element_index)
+#     while parent_index != -1:
+#         if tree[parent_index] < tree[element_index]:
+#             tree[parent_index], tree[element_index] = tree[element_index], tree[parent_index]
+#             element_index = parent_index
+#             parent_index = find_parent_index(element_index)
+#         else:
+#             break
 
-def find_parent_index(index_of_data):
-    if index_of_data == 0:
-        return -1
-    elif index_of_data % 2 == 0:
-        return ((index_of_data - 2) // 2)
-    else:
-        return ((index_of_data - 1) // 2)
+# def find_parent_index(index_of_data):
+#     if index_of_data == 0:
+#         return -1
+#     elif index_of_data % 2 == 0:
+#         return ((index_of_data - 2) // 2)
+#     else:
+#         return ((index_of_data - 1) // 2)
 
-def delete(tree):
-    tree[0], tree[-1] = tree[-1], tree[0]
-    tree.pop()
-    parent_index = 0
-    left_child_index, right_child_index = find_child_index(tree, parent_index)
-    while tree[left_child_index] > tree[parent_index] or tree[right_child_index] > tree[parent_index]:
-        if right_child_index == None:
-            tree[left_child_index], tree[parent_index] = tree[parent_index], tree[left_child_index]
-            break
+# def delete(tree):
+#     tree[0], tree[-1] = tree[-1], tree[0]
+#     tree.pop()
+#     parent_index = 0
+#     left_child_index, right_child_index = find_child_index(tree, parent_index)
+#     while tree[left_child_index] > tree[parent_index] or tree[right_child_index] > tree[parent_index]:
+#         if right_child_index == None:
+#             tree[left_child_index], tree[parent_index] = tree[parent_index], tree[left_child_index]
+#             break
 
-        elif tree[left_child_index] > tree[right_child_index]:
-            tree[left_child_index], tree[parent_index] = tree[parent_index], tree[left_child_index]
-            parent_index = left_child_index
-            left_child_index, right_child_index = find_child_index(tree,parent_index)
-            if len(tree)-1 < left_child_index:
-                break
-        else:
-            tree[right_child_index], tree[parent_index] = tree[parent_index], tree[right_child_index]
-            parent_index = right_child_index
-            left_child_index, right_child_index = find_child_index(tree,parent_index)
-            if len(tree)-1 < left_child_index:
-                break
+#         elif tree[left_child_index] > tree[right_child_index]:
+#             tree[left_child_index], tree[parent_index] = tree[parent_index], tree[left_child_index]
+#             parent_index = left_child_index
+#             left_child_index, right_child_index = find_child_index(tree,parent_index)
+#             if len(tree)-1 < left_child_index:
+#                 break
+#         else:
+#             tree[right_child_index], tree[parent_index] = tree[parent_index], tree[right_child_index]
+#             parent_index = right_child_index
+#             left_child_index, right_child_index = find_child_index(tree,parent_index)
+#             if len(tree)-1 < left_child_index:
+#                 break
 
-def find_child_index(tree, index_of_parent):
-    left = index_of_parent*2+1
-    right = index_of_parent*2+2
-    if right <= len(tree)-1:
-        return left, right
-    else:
-        return left , None
+# def find_child_index(tree, index_of_parent):
+#     left = index_of_parent*2+1
+#     right = index_of_parent*2+2
+#     if right <= len(tree)-1:
+#         return left, right
+#     else:
+#         return left , None
 
-def show_heap_tree(tree):
-    if len(tree) == 0:
-        print("tree is empty")
-        return
-    print("tree data")
+# def show_heap_tree(tree):
+#     if len(tree) == 0:
+#         print("tree is empty")
+#         return
+#     print("tree data")
 
-    n = 0
-    minimum = 0
-    maximum = 2*minimum+1
-    for i in range(len(tree)):
-        if minimum < len(tree) <= maximum :
-            n += 1
-            break
-        n += 1
-        minimum = maximum
-        maximum = 2*minimum+1
-    start_index = 0
-    m = 1
-    for i in range(n):
-        for j in range(start_index,m):
-            print(tree[j], end=" ")
-            if tree[j] == tree[-1]:
-                break
-            start_index += 1
-        m = 2*m+1
-        print()        
+#     n = 0
+#     minimum = 0
+#     maximum = 2*minimum+1
+#     for i in range(len(tree)):
+#         if minimum < len(tree) <= maximum :
+#             n += 1
+#             break
+#         n += 1
+#         minimum = maximum
+#         maximum = 2*minimum+1
+#     start_index = 0
+#     m = 1
+#     for i in range(n):
+#         for j in range(start_index,m):
+#             print(tree[j], end=" ")
+#             if tree[j] == tree[-1]:
+#                 break
+#             start_index += 1
+#         m = 2*m+1
+#         print()        
 
-def ask():
-    user_input = int(input("""
--: what do you want to do with heap tree :-
-      press 1 to insert the data
-      press 2 to delete the data
-      press 3 to view the data
-      press 0 to exit
-"""))
-    return user_input
+# def ask():
+#     user_input = int(input("""
+# -: what do you want to do with heap tree :-
+#       press 1 to insert the data
+#       press 2 to delete the data
+#       press 3 to view the data
+#       press 0 to exit
+# """))
+#     return user_input
 
-user_input = ask()
-while user_input:
-    if user_input == 1:
-        data = int(input("""enter the data
-"""))
-        insert_data(my_tree, data)
-        print("data inserted")
+# user_input = ask()
+# while user_input:
+#     if user_input == 1:
+#         data = int(input("""enter the data
+# """))
+#         insert_data(my_tree, data)
+#         print("data inserted")
 
-    elif user_input == 2:
-        if len(my_tree) == 0:
-            print("tree is empty")
-        else:
-            delete(my_tree)
-            print("data deleted")
+#     elif user_input == 2:
+#         if len(my_tree) == 0:
+#             print("tree is empty")
+#         else:
+#             delete(my_tree)
+#             print("data deleted")
 
-    elif user_input == 3:
-        show_heap_tree(my_tree)
+#     elif user_input == 3:
+#         show_heap_tree(my_tree)
 
-    elif user_input not in [1,2,3]:
-        print("enter correct input")
+#     elif user_input not in [1,2,3]:
+#         print("enter correct input")
 
-    user_input = ask()
-print("thank you!")
+#     user_input = ask()
+# print("thank you!")
+
+# binary tree using linked list
+
+class Node:
+    def __init__(self, data):
+        self.data = data
+        self.left = None
+        self.right = None
+
+node1 = Node(10)
+node2 = Node(20)
+node3 = Node(30)
+
+node1.left = node2
+node1.right = node3
+print(node1.data)
+print(node1.left.data)
+print(node1.right.data)
