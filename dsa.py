@@ -902,7 +902,75 @@
 #     user_input = ask()
 # print("thank you!")
 
-# binary tree using linked list
+# # simple binary tree using linked list data feeding using hard code
+
+# class Node:
+#     def __init__(self, data):
+#         self.data = data
+#         self.left = None
+#         self.right = None
+
+# node1 = Node(10)
+# node2 = Node(20)
+# node3 = Node(30)
+# node4 = Node(40)
+# node5 = Node(50)
+# node6 = Node(60)
+
+# root = node1
+# node1.left = node2
+# node1.right = node3
+# node2.left = node4
+# node2.right = node5
+# node3.left = node6
+
+# # pre-order traversal
+# print("pre-order traversal")
+# def traverse(node):
+#     if node == None:
+#             return
+#     print(node.data)
+#     if node.left != None:
+#         traverse(node.left)
+#     if node.right != None:
+#         traverse(node.right)
+# traverse(root)
+
+# # in-order traversal
+# print("in-order traversal")
+# def traverse(node):
+#     if node == None:
+#         return
+#     if node.left != None:
+#         traverse(node.left)
+#     print(node.data)
+#     if node.right != None:
+#         traverse(node.right)
+# traverse(root)
+
+# # post-order traversal
+# print("post-order traversal")
+# def traverse(node):
+#     if node == None:
+#         return
+#     if node.left != None:
+#         traverse(node.left)
+#     if node.right != None:
+#         traverse(node.right)
+#     print(node.data)
+# traverse(root)
+
+# def traverse(node):
+#     if node == None:
+#         return
+#     print(node.data)
+#     if node.left != None:
+#         traverse(node.left)
+#     if node.right != None:
+#         traverse(node.right)
+# traverse(root)
+
+# simple binary search tree using linked list data feeding using soft code
 
 class Node:
     def __init__(self, data):
@@ -910,12 +978,64 @@ class Node:
         self.left = None
         self.right = None
 
-node1 = Node(10)
-node2 = Node(20)
-node3 = Node(30)
+tree_root = None
 
-node1.left = node2
-node1.right = node3
-print(node1.data)
-print(node1.left.data)
-print(node1.right.data)
+# pre-order traversal
+def traverse(node):
+    print(node.data)
+    if node.left != None:
+        traverse(node.left)
+    if node.right != None:
+        traverse(node.right)
+
+def insert_data(node, value):
+    pass
+
+def find_parent_index(index_of_data):
+    pass
+
+def delete():
+    pass
+
+def find_child_index(tree, index_of_parent):
+    pass
+
+def show_tree(node):
+    traverse(node)
+    
+def ask():
+    user_input = int(input("""
+-: what do you want to do with binary tree :-
+      press 1 to insert the data
+      press 2 to delete the data
+      press 3 to view the data
+      press 0 to exit
+"""))
+    return user_input
+
+user_input = ask()
+while user_input:
+    if user_input == 1:
+        data = int(input("""enter the data
+"""))
+        tree_root = insert_data(tree_root, data)
+        print("data inserted")
+
+    elif user_input == 2:
+        if tree_root == None:
+            print("tree is empty")
+        else:
+            delete()
+            print("data deleted")
+
+    elif user_input == 3:
+        if tree_root == None:
+            print("tree is empty")
+        else:
+            show_tree(tree_root)
+
+    elif user_input not in [1,2,3]:
+        print("enter correct input")
+
+    user_input = ask()
+print("thank you!")
