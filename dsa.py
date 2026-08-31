@@ -978,30 +978,81 @@ class Node:
         self.left = None
         self.right = None
 
-tree_root = None
+root = None
 
-# pre-order traversal
-def traverse(node):
+def insert_data(current_node, new_node):
+    if current_node == None:
+        current_node = new_node
+    elif current_node.data == new_node.data:
+        return 
+    elif current_node.left == None and current_node.data > data:
+        current_node.left = new_node
+    elif current_node.left != None and current_node.data > data:
+        insert_data(current_node.left, new_node)
+    elif current_node.right == None and current_node.data < data:
+        current_node.right = new_node
+    elif current_node.right != None and current_node.data < data:
+        insert_data(current_node.right, new_node)
+    return current_node
+    
+def find_leaf_nodes(node):
+    if node.left == None and node.right == None:
+        print(node.data)
+    else:
+        if node.left != None:
+            find_leaf_nodes(node.left)
+        if node.right != None:
+            find_leaf_nodes(node.right)
+
+def find_parent_node(node, leaf_node_data):
+    if node.data == leaf_node_data:
+        return
+    # if node.left != None and node.left.data == leaf_node_data:
+    #     return node
+    # elif node.right != None and node.right.data == leaf_node_data:
+    #     return node
+    # elif node.left != None and node.left.data != leaf_node_data:
+    #     return find_parent_node(node.left, leaf_node_data)
+    # elif node.right != None and node.right.data != leaf_node_data:
+    #     return find_parent_node(node.right, leaf_node_data)
+
+def delete(node, leaf_node):
+    if node.left == None and node.right == None:
+        node = None
+    elif node.left != None and node.left.data == leaf_node:
+        node.left = None
+    elif node.right != None and node.right.data == leaf_node:
+        node.right = None
+    elif node.left != None and node.left.data != leaf_node:
+        node = delete(node.left, leaf_node)
+    elif node.right != None and node.right.data != leaf_node:
+        node = delete(node.right, leaf_node)
+        
+    return node
+
+def show_tree1(node):
+    # pre-order traversal
     print(node.data)
     if node.left != None:
-        traverse(node.left)
+        show_tree1(node.left)
     if node.right != None:
-        traverse(node.right)
+        show_tree1(node.right)
 
-def insert_data(node, value):
-    pass
+def show_tree2(node):
+    # in-order traversal
+    if node.left != None:
+        show_tree2(node.left)
+    print(node.data)
+    if node.right != None:
+        show_tree2(node.right)
 
-def find_parent_index(index_of_data):
-    pass
-
-def delete():
-    pass
-
-def find_child_index(tree, index_of_parent):
-    pass
-
-def show_tree(node):
-    traverse(node)
+def show_tree3(node):
+    # post-order traversal
+    if node.left != None:
+        show_tree3(node.left)
+    if node.right != None:
+        show_tree3(node.right)
+    print(node.data)
     
 def ask():
     user_input = int(input("""
@@ -1017,22 +1068,47 @@ user_input = ask()
 while user_input:
     if user_input == 1:
         data = int(input("""enter the data
-"""))
-        tree_root = insert_data(tree_root, data)
-        print("data inserted")
+"""))     
+        new_node = Node(data)
+        value = insert_data(root, new_node)
+        if value == None:
+            print("data already inserted")
+        else:
+            root = value
+            print("data inserted")
 
     elif user_input == 2:
-        if tree_root == None:
+        if root == None:
             print("tree is empty")
         else:
-            delete()
+            print("you can delete only leaf nodes and you have these leaf nodes")
+            find_leaf_nodes(root)
+            leaf_node_data = input("""which leaf node you want to delete (give value)
+""")
+            parent_node = find_parent_node(root, leaf_node_data)
+            value = delete(root, leaf_node_data)
+            root = value
             print("data deleted")
 
     elif user_input == 3:
-        if tree_root == None:
+        if root == None:
             print("tree is empty")
         else:
-            show_tree(tree_root)
+            value = int(input("""which traversal you want
+press 1 for pre-order
+press 2 fro in-order
+press 3 for post-order
+"""))
+            if value == 1:
+                show_tree1(root)
+            elif value == 2:
+                show_tree2(root)
+            elif value == 3:
+                show_tree3(root)
+            else:
+                print("select only from available option")
+                print("by default pre-order")
+                show_tree1()
 
     elif user_input not in [1,2,3]:
         print("enter correct input")
