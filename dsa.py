@@ -985,25 +985,24 @@ def insert_data(current_node, new_node):
         current_node = new_node
     elif current_node.data == new_node.data:
         return 
-    elif current_node.left == None and current_node.data > data:
+    elif current_node.data > data and current_node.left == None:
         current_node.left = new_node
-    elif current_node.left != None and current_node.data > data:
+    elif current_node.data > data and current_node.left != None:
         insert_data(current_node.left, new_node)
-    elif current_node.right == None and current_node.data < data:
+    elif current_node.data < data and current_node.right == None:
         current_node.right = new_node
-    elif current_node.right != None and current_node.data < data:
+    elif current_node.data < data and current_node.right != None:
         insert_data(current_node.right, new_node)
     return current_node
     
 def find_leaf_nodes(node):
     if node.left == None and node.right == None:
-        print(node.data)
-    else:
-        if node.left != None:
-            find_leaf_nodes(node.left)
-        if node.right != None:
-            find_leaf_nodes(node.right)
-
+        return [node.data]
+    l1 = find_leaf_nodes(node.left)
+    r1 = find_leaf_nodes(node.right)
+    return l1 + r1
+         
+    
 def find_parent_node(node, leaf_node_data):
     if node.data == leaf_node_data:
         return
@@ -1064,6 +1063,7 @@ def ask():
 """))
     return user_input
 
+leaf_nodes = []
 user_input = ask()
 while user_input:
     if user_input == 1:
@@ -1082,7 +1082,8 @@ while user_input:
             print("tree is empty")
         else:
             print("you can delete only leaf nodes and you have these leaf nodes")
-            find_leaf_nodes(root)
+            leaf_nodes = find_leaf_nodes(root)
+            print(leaf_nodes)
             leaf_node_data = input("""which leaf node you want to delete (give value)
 """)
             parent_node = find_parent_node(root, leaf_node_data)
