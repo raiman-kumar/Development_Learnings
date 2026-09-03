@@ -970,153 +970,6 @@
 #         traverse(node.right)
 # traverse(root)
 
-# # simple binary search tree using linked list data feeding using soft code
-
-# class Node:
-#     def __init__(self, data):
-#         self.data = data
-#         self.left = None
-#         self.right = None
-
-# root = None
-
-# def insert_data(current_node, new_node):
-#     if current_node == None:
-#         current_node = new_node
-#     elif current_node.data == new_node.data:
-#         return 
-#     elif current_node.data > data and current_node.left == None:
-#         current_node.left = new_node
-#     elif current_node.data > data and current_node.left != None:
-#         insert_data(current_node.left, new_node)
-#     elif current_node.data < data and current_node.right == None:
-#         current_node.right = new_node
-#     elif current_node.data < data and current_node.right != None:
-#         insert_data(current_node.right, new_node)
-#     return current_node
-    
-# def find_leaf_nodes(node):
-#     if node.left == None and node.right == None:
-#         return [node.data]
-#     l1 = find_leaf_nodes(node.left)
-#     r1 = find_leaf_nodes(node.right)
-#     return l1 + r1
-         
-    
-# def find_parent_node(node, leaf_node_data):
-#     if node.data == leaf_node_data:
-#         return
-#     # if node.left != None and node.left.data == leaf_node_data:
-#     #     return node
-#     # elif node.right != None and node.right.data == leaf_node_data:
-#     #     return node
-#     # elif node.left != None and node.left.data != leaf_node_data:
-#     #     return find_parent_node(node.left, leaf_node_data)
-#     # elif node.right != None and node.right.data != leaf_node_data:
-#     #     return find_parent_node(node.right, leaf_node_data)
-
-# def delete(node, leaf_node):
-#     if node.left == None and node.right == None:
-#         node = None
-#     elif node.left != None and node.left.data == leaf_node:
-#         node.left = None
-#     elif node.right != None and node.right.data == leaf_node:
-#         node.right = None
-#     elif node.left != None and node.left.data != leaf_node:
-#         node = delete(node.left, leaf_node)
-#     elif node.right != None and node.right.data != leaf_node:
-#         node = delete(node.right, leaf_node)
-        
-#     return node
-
-# def show_tree1(node):
-#     # pre-order traversal
-#     print(node.data)
-#     if node.left != None:
-#         show_tree1(node.left)
-#     if node.right != None:
-#         show_tree1(node.right)
-
-# def show_tree2(node):
-#     # in-order traversal
-#     if node.left != None:
-#         show_tree2(node.left)
-#     print(node.data)
-#     if node.right != None:
-#         show_tree2(node.right)
-
-# def show_tree3(node):
-#     # post-order traversal
-#     if node.left != None:
-#         show_tree3(node.left)
-#     if node.right != None:
-#         show_tree3(node.right)
-#     print(node.data)
-    
-# def ask():
-#     user_input = int(input("""
-# -: what do you want to do with binary tree :-
-#       press 1 to insert the data
-#       press 2 to delete the data
-#       press 3 to view the data
-#       press 0 to exit
-# """))
-#     return user_input
-
-# leaf_nodes = []
-# user_input = ask()
-# while user_input:
-#     if user_input == 1:
-#         data = int(input("""enter the data
-# """))     
-#         new_node = Node(data)
-#         value = insert_data(root, new_node)
-#         if value == None:
-#             print("data already inserted")
-#         else:
-#             root = value
-#             print("data inserted")
-
-#     elif user_input == 2:
-#         if root == None:
-#             print("tree is empty")
-#         else:
-#             print("you can delete only leaf nodes and you have these leaf nodes")
-#             leaf_nodes = find_leaf_nodes(root)
-#             print(leaf_nodes)
-#             leaf_node_data = input("""which leaf node you want to delete (give value)
-# """)
-#             parent_node = find_parent_node(root, leaf_node_data)
-#             value = delete(root, leaf_node_data)
-#             root = value
-#             print("data deleted")
-
-#     elif user_input == 3:
-#         if root == None:
-#             print("tree is empty")
-#         else:
-#             value = int(input("""which traversal you want
-# press 1 for pre-order
-# press 2 fro in-order
-# press 3 for post-order
-# """))
-#             if value == 1:
-#                 show_tree1(root)
-#             elif value == 2:
-#                 show_tree2(root)
-#             elif value == 3:
-#                 show_tree3(root)
-#             else:
-#                 print("select only from available option")
-#                 print("by default pre-order")
-#                 show_tree1()
-
-#     elif user_input not in [1,2,3]:
-#         print("enter correct input")
-
-#     user_input = ask()
-# print("thank you!")
-
 # # stack using array (python list) hard coded
 
 # # creating empty stack
@@ -1178,3 +1031,177 @@
 
 # # viewing top element
 # print(top.data)
+
+# simple binary search tree using linked list data feeding using soft code
+
+class Node:
+    def __init__(self, data):
+        self.data = data
+        self.left = None
+        self.right = None
+
+def find_value_in_tree(node, value) -> bool:
+    if node.data == value:
+        return True
+    if node.left != None:
+        is_available =  find_value_in_tree(node.left, value)
+        if is_available:
+            return True
+    if node.right != None:
+        is_available =  find_value_in_tree(node.right, value)
+        if is_available:
+            return True
+    return False
+
+def insert_data(current_node, new_node): 
+    if current_node.data > data and current_node.left == None:
+        current_node.left = new_node
+    elif current_node.data > data and current_node.left != None:
+        insert_data(current_node.left, new_node)
+    elif current_node.data < data and current_node.right == None:
+        current_node.right = new_node
+    elif current_node.data < data and current_node.right != None:
+        insert_data(current_node.right, new_node)
+    return current_node
+    
+def show_leaf_nodes(node):
+    if node.left == None and node.right == None:
+        print(node.data)
+    else:
+        if node.left != None:
+            show_leaf_nodes(node.left)
+        if node.right != None:
+            show_leaf_nodes(node.right)
+
+def match_leaf_nodes(node, value):
+    if node.left == None and node.right == None and node.data == value:
+        return True
+
+    if node.left != None:
+        is_available =  match_leaf_nodes(node.left, value)
+        if is_available:
+            return True
+    if node.right != None:
+        is_available =  match_leaf_nodes(node.right, value)
+        if is_available:
+            return True
+    return False
+
+def delete(node, leaf_node_data):
+    if node.left != None and node.left.data == leaf_node_data:
+        node.left = None
+    elif node.right != None and node.right.data == leaf_node_data:
+        node.right = None
+    elif node.left != None:
+        delete(node.left, leaf_node_data)
+    elif node.right != None:
+        delete(node.right, leaf_node_data)       
+    return node
+
+# pre-order traversal
+def pre_order_traversal(node):
+    print(node.data)
+    if node.left != None:
+        pre_order_traversal(node.left)
+    if node.right != None:
+        pre_order_traversal(node.right)
+
+# in-order traversal
+def in_order_traversal(node):
+    if node.left != None:
+        in_order_traversal(node.left)
+    print(node.data)
+    if node.right != None:
+        in_order_traversal(node.right)
+
+# post-order traversal
+def post_order_traversal(node):
+    if node.left != None:
+        post_order_traversal(node.left)
+    if node.right != None:
+        post_order_traversal(node.right)
+    print(node.data)
+    
+def ask():
+    try:
+        user_input = int(input("""
+        -: what do you want to do with binary search tree :-
+                    press 1 to insert the data
+                    press 2 to delete the data
+                    press 3 to view the data
+                    press 0 to exit
+"""))
+        return user_input
+    except Exception as e:
+        print(f"value error : [ press appropriate key]")
+        return ask()
+
+root = None
+user_input = ask()
+
+while user_input:
+    if user_input == 1:
+        data = int(input("""enter the data
+"""))     
+        new_node = Node(data)
+        if root == None:
+            root = new_node
+            print("data inserted")
+        else:
+            value_availability = find_value_in_tree(root, new_node.data)
+            if value_availability:
+                print("data already existed")
+            else:
+                value = insert_data(root, new_node)
+                root = value
+                print("data inserted")
+
+    elif user_input == 2:
+        if root == None:
+            print("tree is empty")
+        elif root.left == None and root.right == None:
+            concent = input("""this is root node of the tree, are you sure to delete root node (enter y for yes and n for no)
+""")
+            while concent not in ['y','Y','n','N']:
+                concent = input("""(enter y for yes and n for no only)"
+""")
+            if concent in ['y','Y']:
+                root = None
+                print("data deleted")
+        else:
+            print("you can delete leaf nodes only and you have these leaf nodes")
+            show_leaf_nodes(root)
+            leaf_node_data = int(input("""which leaf node you want to delete (give value)
+"""))
+            leaf_availability = match_leaf_nodes(root, leaf_node_data)
+            if leaf_availability:
+                value = delete(root, leaf_node_data)
+                root = value
+                print("data deleted")
+            else:
+                print("enter leaf node value only")
+
+    elif user_input == 3:
+        if root == None:
+            print("tree is empty")
+        else:
+            value = int(input("""which traversal you want
+press 1 for pre-order traversal
+press 2 for in-order traversal
+press 3 for post-order traversal
+"""))
+            while value not in [1,2,3]:
+                value = int(input("select only from available option"))
+            print("tree data")
+            if value == 1:
+                pre_order_traversal(root)
+            elif value == 2:
+                in_order_traversal(root)
+            elif value == 3:
+                post_order_traversal(root)
+
+    elif user_input not in [1,2,3]:
+        print("enter correct input")
+    user_input = ask()
+
+print("thank you!")
