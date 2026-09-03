@@ -970,149 +970,211 @@
 #         traverse(node.right)
 # traverse(root)
 
-# simple binary search tree using linked list data feeding using soft code
+# # simple binary search tree using linked list data feeding using soft code
 
-class Node:
-    def __init__(self, data):
-        self.data = data
-        self.left = None
-        self.right = None
+# class Node:
+#     def __init__(self, data):
+#         self.data = data
+#         self.left = None
+#         self.right = None
 
-root = None
+# root = None
 
-def insert_data(current_node, new_node):
-    if current_node == None:
-        current_node = new_node
-    elif current_node.data == new_node.data:
-        return 
-    elif current_node.data > data and current_node.left == None:
-        current_node.left = new_node
-    elif current_node.data > data and current_node.left != None:
-        insert_data(current_node.left, new_node)
-    elif current_node.data < data and current_node.right == None:
-        current_node.right = new_node
-    elif current_node.data < data and current_node.right != None:
-        insert_data(current_node.right, new_node)
-    return current_node
+# def insert_data(current_node, new_node):
+#     if current_node == None:
+#         current_node = new_node
+#     elif current_node.data == new_node.data:
+#         return 
+#     elif current_node.data > data and current_node.left == None:
+#         current_node.left = new_node
+#     elif current_node.data > data and current_node.left != None:
+#         insert_data(current_node.left, new_node)
+#     elif current_node.data < data and current_node.right == None:
+#         current_node.right = new_node
+#     elif current_node.data < data and current_node.right != None:
+#         insert_data(current_node.right, new_node)
+#     return current_node
     
-def find_leaf_nodes(node):
-    if node.left == None and node.right == None:
-        return [node.data]
-    l1 = find_leaf_nodes(node.left)
-    r1 = find_leaf_nodes(node.right)
-    return l1 + r1
+# def find_leaf_nodes(node):
+#     if node.left == None and node.right == None:
+#         return [node.data]
+#     l1 = find_leaf_nodes(node.left)
+#     r1 = find_leaf_nodes(node.right)
+#     return l1 + r1
          
     
-def find_parent_node(node, leaf_node_data):
-    if node.data == leaf_node_data:
-        return
-    # if node.left != None and node.left.data == leaf_node_data:
-    #     return node
-    # elif node.right != None and node.right.data == leaf_node_data:
-    #     return node
-    # elif node.left != None and node.left.data != leaf_node_data:
-    #     return find_parent_node(node.left, leaf_node_data)
-    # elif node.right != None and node.right.data != leaf_node_data:
-    #     return find_parent_node(node.right, leaf_node_data)
+# def find_parent_node(node, leaf_node_data):
+#     if node.data == leaf_node_data:
+#         return
+#     # if node.left != None and node.left.data == leaf_node_data:
+#     #     return node
+#     # elif node.right != None and node.right.data == leaf_node_data:
+#     #     return node
+#     # elif node.left != None and node.left.data != leaf_node_data:
+#     #     return find_parent_node(node.left, leaf_node_data)
+#     # elif node.right != None and node.right.data != leaf_node_data:
+#     #     return find_parent_node(node.right, leaf_node_data)
 
-def delete(node, leaf_node):
-    if node.left == None and node.right == None:
-        node = None
-    elif node.left != None and node.left.data == leaf_node:
-        node.left = None
-    elif node.right != None and node.right.data == leaf_node:
-        node.right = None
-    elif node.left != None and node.left.data != leaf_node:
-        node = delete(node.left, leaf_node)
-    elif node.right != None and node.right.data != leaf_node:
-        node = delete(node.right, leaf_node)
+# def delete(node, leaf_node):
+#     if node.left == None and node.right == None:
+#         node = None
+#     elif node.left != None and node.left.data == leaf_node:
+#         node.left = None
+#     elif node.right != None and node.right.data == leaf_node:
+#         node.right = None
+#     elif node.left != None and node.left.data != leaf_node:
+#         node = delete(node.left, leaf_node)
+#     elif node.right != None and node.right.data != leaf_node:
+#         node = delete(node.right, leaf_node)
         
-    return node
+#     return node
 
-def show_tree1(node):
-    # pre-order traversal
-    print(node.data)
-    if node.left != None:
-        show_tree1(node.left)
-    if node.right != None:
-        show_tree1(node.right)
+# def show_tree1(node):
+#     # pre-order traversal
+#     print(node.data)
+#     if node.left != None:
+#         show_tree1(node.left)
+#     if node.right != None:
+#         show_tree1(node.right)
 
-def show_tree2(node):
-    # in-order traversal
-    if node.left != None:
-        show_tree2(node.left)
-    print(node.data)
-    if node.right != None:
-        show_tree2(node.right)
+# def show_tree2(node):
+#     # in-order traversal
+#     if node.left != None:
+#         show_tree2(node.left)
+#     print(node.data)
+#     if node.right != None:
+#         show_tree2(node.right)
 
-def show_tree3(node):
-    # post-order traversal
-    if node.left != None:
-        show_tree3(node.left)
-    if node.right != None:
-        show_tree3(node.right)
-    print(node.data)
+# def show_tree3(node):
+#     # post-order traversal
+#     if node.left != None:
+#         show_tree3(node.left)
+#     if node.right != None:
+#         show_tree3(node.right)
+#     print(node.data)
     
-def ask():
-    user_input = int(input("""
--: what do you want to do with binary tree :-
-      press 1 to insert the data
-      press 2 to delete the data
-      press 3 to view the data
-      press 0 to exit
-"""))
-    return user_input
+# def ask():
+#     user_input = int(input("""
+# -: what do you want to do with binary tree :-
+#       press 1 to insert the data
+#       press 2 to delete the data
+#       press 3 to view the data
+#       press 0 to exit
+# """))
+#     return user_input
 
-leaf_nodes = []
-user_input = ask()
-while user_input:
-    if user_input == 1:
-        data = int(input("""enter the data
-"""))     
-        new_node = Node(data)
-        value = insert_data(root, new_node)
-        if value == None:
-            print("data already inserted")
-        else:
-            root = value
-            print("data inserted")
+# leaf_nodes = []
+# user_input = ask()
+# while user_input:
+#     if user_input == 1:
+#         data = int(input("""enter the data
+# """))     
+#         new_node = Node(data)
+#         value = insert_data(root, new_node)
+#         if value == None:
+#             print("data already inserted")
+#         else:
+#             root = value
+#             print("data inserted")
 
-    elif user_input == 2:
-        if root == None:
-            print("tree is empty")
-        else:
-            print("you can delete only leaf nodes and you have these leaf nodes")
-            leaf_nodes = find_leaf_nodes(root)
-            print(leaf_nodes)
-            leaf_node_data = input("""which leaf node you want to delete (give value)
-""")
-            parent_node = find_parent_node(root, leaf_node_data)
-            value = delete(root, leaf_node_data)
-            root = value
-            print("data deleted")
+#     elif user_input == 2:
+#         if root == None:
+#             print("tree is empty")
+#         else:
+#             print("you can delete only leaf nodes and you have these leaf nodes")
+#             leaf_nodes = find_leaf_nodes(root)
+#             print(leaf_nodes)
+#             leaf_node_data = input("""which leaf node you want to delete (give value)
+# """)
+#             parent_node = find_parent_node(root, leaf_node_data)
+#             value = delete(root, leaf_node_data)
+#             root = value
+#             print("data deleted")
 
-    elif user_input == 3:
-        if root == None:
-            print("tree is empty")
-        else:
-            value = int(input("""which traversal you want
-press 1 for pre-order
-press 2 fro in-order
-press 3 for post-order
-"""))
-            if value == 1:
-                show_tree1(root)
-            elif value == 2:
-                show_tree2(root)
-            elif value == 3:
-                show_tree3(root)
-            else:
-                print("select only from available option")
-                print("by default pre-order")
-                show_tree1()
+#     elif user_input == 3:
+#         if root == None:
+#             print("tree is empty")
+#         else:
+#             value = int(input("""which traversal you want
+# press 1 for pre-order
+# press 2 fro in-order
+# press 3 for post-order
+# """))
+#             if value == 1:
+#                 show_tree1(root)
+#             elif value == 2:
+#                 show_tree2(root)
+#             elif value == 3:
+#                 show_tree3(root)
+#             else:
+#                 print("select only from available option")
+#                 print("by default pre-order")
+#                 show_tree1()
 
-    elif user_input not in [1,2,3]:
-        print("enter correct input")
+#     elif user_input not in [1,2,3]:
+#         print("enter correct input")
 
-    user_input = ask()
-print("thank you!")
+#     user_input = ask()
+# print("thank you!")
+
+# # stack using array (python list) hard coded
+
+# # creating empty stack
+
+# my_array = []
+
+# # inserting element into the stack
+
+# my_stack_size = 0
+
+# my_array.append(30)
+# my_stack_size += 1
+# my_array.append(34)
+# my_stack_size += 1
+# my_array.append(40)
+# my_stack_size += 1
+# my_array.append(23)
+# my_stack_size += 1
+# my_array.append(38)
+
+# # deleting the item
+# my_array.pop()
+
+# # viewing top element
+# print(my_array[-1])
+
+# # stack using linked list hard coded
+
+# # creating node prototype stack
+
+# class Node:
+#     def __init__(self, data):
+#         self.data = data
+#         self.next = None
+
+# # inserting element into the stack
+
+# my_stack_size = 0
+
+# first = Node(30)
+# my_stack_size += 1
+# top = first
+# node1 = Node(34)
+# first.next = node1
+# my_stack_size += 1
+# top = node1
+# node2 = Node(40)
+# node1.next = node2
+# my_stack_size += 1
+# top = node2
+# node3 = Node(25)
+# node2.next = node3
+# my_stack_size += 1
+# top = node3
+
+# # deleting the item
+# node2.next = None
+# top = node2
+
+# # viewing top element
+# print(top.data)
